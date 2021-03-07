@@ -1,14 +1,9 @@
-# flutter_native_strings
+# Flutter Native Strings (WIP)
 
-A new Flutter package project.
+A command-line tool which simplifies the task of adding native Android and iOS string resources to your Flutter app.
 
-## Getting Started
+## :briefcase: Use Case
+A common use case for this is for implementing localized push notifications where the string resources are registered in the appropriate locations in the Android and iOS folders and keeping the two strings sources synced would be a pain.
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+## :construction: Progress
+The project is at its initial stage and I'm excited to work on it.
