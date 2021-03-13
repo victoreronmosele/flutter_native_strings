@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:flutter_native_strings/src/models/message_factory_i.dart';
 import 'package:meta/meta.dart';
 
 class Logger implements LoggerI {
@@ -9,11 +7,11 @@ class Logger implements LoggerI {
   Logger({@required this.ioSink});
 
   @override
-  void printMessage({@required MessageFactoryI messageFactory}) {
-    ioSink.writeln(messageFactory.getMessage());
+  void printMessage({@required String message}) {
+    ioSink.writeln(message);
   }
 }
 
 abstract class LoggerI {
-  void printMessage({@required MessageFactoryI messageFactory});
+  void printMessage({@required String message});
 }
