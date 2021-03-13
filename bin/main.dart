@@ -27,24 +27,25 @@ Future<void> main(List<String> args) async {
 
     final XmlBuilder xmlBuilder = XmlBuilder();
     xmlBuilder.processing('xml', 'version="1.0" encoding="utf-8"');
-    for (var i = 0; i < stringNameToContentMap.length; i++) {
-      final name = stringNameToContentMap.keys.elementAt(i);
-      final value = stringNameToContentMap.values.elementAt(i);
+    xmlBuilder.element('resources', nest: () {
+      for (var i = 0; i < stringNameToContentMap.length; i++) {
+        final name = stringNameToContentMap.keys.elementAt(i);
+        final value = stringNameToContentMap.values.elementAt(i);
 
-      xmlBuilder.element('resources', nest: () {
         xmlBuilder.element('string', nest: () {
           xmlBuilder.attribute('name', name);
           xmlBuilder.text(value);
         });
-      });
-    }
+      }
+    });
 
     final XmlDocument androidStringXml = xmlBuilder.buildDocument();
 
     destinationFile
         .writeAsStringSync(androidStringXml.toXmlString(pretty: true));
 
-    _logger.printMessage(message: 'Done! \n\nGenerated ${destinationFile.path}');
+    _logger.printMessage(
+        message: 'Done! \n\nGenerated ${destinationFile.path}');
   } catch (e) {
     _logger.printMessage(message: 'Error occured: $e');
   }
