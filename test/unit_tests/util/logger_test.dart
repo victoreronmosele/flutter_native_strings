@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter_native_strings/src/util/logger.dart';
+import 'package:flutter_native_strings/src/util/logger/logger.dart';
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
 

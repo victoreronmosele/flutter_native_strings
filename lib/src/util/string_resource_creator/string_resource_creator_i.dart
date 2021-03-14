@@ -1,5 +1,5 @@
 import 'package:file/file.dart';
-import 'package:flutter_native_strings/src/util/logger.dart';
+import 'package:flutter_native_strings/src/util/logger/logger.dart';
 import 'package:meta/meta.dart';
 
 abstract class StringResourceCreatorI {

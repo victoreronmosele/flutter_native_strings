@@ -1,8 +1,7 @@
 import 'package:file/file.dart';
-import 'package:flutter_native_strings/src/util/logger.dart';
+import 'package:flutter_native_strings/src/util/logger/logger.dart';
+import 'package:flutter_native_strings/src/util/string_resource_creator/string_resource_creator_i.dart';
 import 'package:meta/meta.dart';
-
-import 'package:flutter_native_strings/src/util/string_resource_creator_i.dart';
 import 'package:xml/xml.dart';
 
 class AndroidStringResourceCreator implements StringResourceCreatorI {

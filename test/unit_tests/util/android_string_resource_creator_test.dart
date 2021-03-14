@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:file/file.dart';
 import 'package:file/memory.dart';
-import 'package:flutter_native_strings/src/util/android_string_resource_creator.dart';
-import 'package:flutter_native_strings/src/util/logger.dart';
+import 'package:flutter_native_strings/src/util/logger/logger.dart';
+import 'package:flutter_native_strings/src/util/string_resource_creator/android_string_resource_creator.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

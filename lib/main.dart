@@ -5,9 +5,10 @@ import 'dart:io' show stdout;
 import 'package:file/file.dart';
 import 'package:file/local.dart';
 import 'package:flutter_native_strings/src/data/constants.dart';
-import 'package:flutter_native_strings/src/util/android_string_resource_creator.dart';
-import 'package:flutter_native_strings/src/util/logger.dart';
-import 'package:flutter_native_strings/src/util/string_resource_creator_i.dart';
+import 'package:flutter_native_strings/src/util/logger/logger.dart';
+import 'package:flutter_native_strings/src/util/string_resource_creator/android_string_resource_creator.dart';
+import 'package:flutter_native_strings/src/util/string_resource_creator/string_resource_creator_i.dart';
+
 
 class FlutterNativeStrings {
   void generateNativeStrings() {
