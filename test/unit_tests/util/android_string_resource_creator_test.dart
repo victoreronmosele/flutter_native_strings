@@ -86,7 +86,7 @@ void main() {
     );
 
     test(
-        'generates the correct xml content for stringNameToContentMap with multiple items',
+        'generates the correct xml content for stringNameToContentMap with more than one',
         () {
       final AndroidStringResourceCreator androidStringResourceCreator =
           AndroidStringResourceCreator();
@@ -107,6 +107,29 @@ void main() {
   <string name="hello">Hello</string>
   <string name="world">World</string>
 </resources>''';
+
+      expect(generatedContentString, expectedXmlContent);
+    });
+
+    test(
+        'generates the correct xml content for stringNameToContentMap with no items',
+        () {
+      final AndroidStringResourceCreator androidStringResourceCreator =
+          AndroidStringResourceCreator();
+
+      androidStringResourceCreator.createStringResource(
+          logger: MockLogger(),
+          fileSystem: fileSystem,
+          stringNameToContentMap: {});
+
+      final File fileWithGeneratedContent = fileSystem.file(androidFilePath);
+
+      final String generatedContentString =
+          fileWithGeneratedContent.readAsStringSync();
+
+      final String expectedXmlContent =
+          '''<?xml version="1.0" encoding="utf-8"?>
+<resources/>''';
 
       expect(generatedContentString, expectedXmlContent);
     });
