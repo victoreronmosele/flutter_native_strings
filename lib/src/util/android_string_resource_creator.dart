@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:file/file.dart';
 import 'package:flutter_native_strings/src/util/logger.dart';
 import 'package:meta/meta.dart';
 
@@ -9,13 +9,16 @@ class AndroidStringResourceCreator implements StringResourceCreatorI {
   @override
   void createStringResource(
       {@required Map<String, dynamic> stringNameToContentMap,
+      @required FileSystem fileSystem,
       @required LoggerI logger}) {
     try {
       logger.printMessage(message: 'Generating android string resource...\n');
 
       final String androidStringResourceDestinationPath =
           'android/app/src/main/res/values/strings.xml';
-      final File destinationFile = File(androidStringResourceDestinationPath);
+
+      final File destinationFile =
+          fileSystem.file(androidStringResourceDestinationPath);
 
       if (!destinationFile.existsSync()) {
         destinationFile.createSync();
@@ -46,6 +49,8 @@ class AndroidStringResourceCreator implements StringResourceCreatorI {
       logger.printMessage(
           message:
               'Done! \n\nGenerated ${numberOfStringsToGenerate} string${numberOfStringsToGenerate == 1 ? '' : 's'} to ${destinationFile.path}');
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
   }
 }

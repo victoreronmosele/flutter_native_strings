@@ -1,7 +1,9 @@
 library flutter_native_strings;
 
 import 'dart:convert' as json;
-import 'dart:io';
+import 'dart:io' show stdout;
+import 'package:file/file.dart';
+import 'package:file/local.dart';
 import 'package:flutter_native_strings/src/data/constants.dart';
 import 'package:flutter_native_strings/src/util/android_string_resource_creator.dart';
 import 'package:flutter_native_strings/src/util/logger.dart';
@@ -17,8 +19,9 @@ class FlutterNativeStrings {
 
     try {
       final String arbFilePath = 'assets/en.arb';
+      final FileSystem fileSystem = LocalFileSystem();
 
-      final File arbFile = File(arbFilePath);
+      final File arbFile = fileSystem.file(arbFilePath);
       final String arbFileContentAsString = arbFile.readAsStringSync();
       final Map<String, dynamic> arbFileContentAsMap =
           json.jsonDecode(arbFileContentAsString);
@@ -29,7 +32,9 @@ class FlutterNativeStrings {
           AndroidStringResourceCreator();
 
       _androidStringCreator.createStringResource(
-          stringNameToContentMap: stringNameToContentMap, logger: _logger);
+          stringNameToContentMap: stringNameToContentMap,
+          fileSystem: fileSystem,
+          logger: _logger);
     } catch (e) {
       _logger.printMessage(message: 'Error occured: $e');
     }
