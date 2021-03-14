@@ -21,7 +21,8 @@ void main() {
 
     setUp(() async {
       memoryFileSystem = MemoryFileSystem();
-      final Directory directory = memoryFileSystem.directory(androidFileDirectory);
+      final Directory directory =
+          memoryFileSystem.directory(androidFileDirectory);
       await directory.create(recursive: true);
     });
 
@@ -70,7 +71,8 @@ void main() {
             fileSystem: memoryFileSystem,
             stringNameToContentMap: {'hello': 'Hello'});
 
-        final File fileWithGeneratedContent = memoryFileSystem.file(androidFilePath);
+        final File fileWithGeneratedContent =
+            memoryFileSystem.file(androidFilePath);
 
         final String generatedContentString =
             fileWithGeneratedContent.readAsStringSync();
@@ -96,7 +98,8 @@ void main() {
           fileSystem: memoryFileSystem,
           stringNameToContentMap: {'hello': 'Hello', 'world': 'World'});
 
-      final File fileWithGeneratedContent = memoryFileSystem.file(androidFilePath);
+      final File fileWithGeneratedContent =
+          memoryFileSystem.file(androidFilePath);
 
       final String generatedContentString =
           fileWithGeneratedContent.readAsStringSync();
@@ -122,7 +125,8 @@ void main() {
           fileSystem: memoryFileSystem,
           stringNameToContentMap: {});
 
-      final File fileWithGeneratedContent = memoryFileSystem.file(androidFilePath);
+      final File fileWithGeneratedContent =
+          memoryFileSystem.file(androidFilePath);
 
       final String generatedContentString =
           fileWithGeneratedContent.readAsStringSync();

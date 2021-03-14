@@ -1,7 +1,7 @@
 import 'package:file/file.dart';
 import 'package:file/local.dart';
 import 'package:flutter_native_strings/flutter_native_strings.dart';
-import 'dart:io'; //show stdout, IOSink; ///Showing only these so the File
+import 'dart:io';
 
 import 'package:flutter_native_strings/src/util/logger/logger.dart';
 import 'package:flutter_native_strings/src/util/string_resource_creator/android_string_resource_creator.dart';
