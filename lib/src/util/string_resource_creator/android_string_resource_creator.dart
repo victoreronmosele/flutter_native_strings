@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:xml/xml.dart';
 
 class AndroidStringResourceCreator implements StringResourceCreatorI {
+
   @override
   void createStringResource(
       {@required Map<String, dynamic> stringNameToContentMap,

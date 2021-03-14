@@ -17,11 +17,11 @@ void main() {
       'hello': 'Hello',
     };
 
-    FileSystem fileSystem;
+    FileSystem memoryFileSystem;
 
     setUp(() async {
-      fileSystem = MemoryFileSystem();
-      final Directory directory = fileSystem.directory(androidFileDirectory);
+      memoryFileSystem = MemoryFileSystem();
+      final Directory directory = memoryFileSystem.directory(androidFileDirectory);
       await directory.create(recursive: true);
     });
 
@@ -29,14 +29,14 @@ void main() {
       final AndroidStringResourceCreator androidStringResourceCreator =
           AndroidStringResourceCreator();
 
-      expect(fileSystem.file(androidFilePath).existsSync(), false);
+      expect(memoryFileSystem.file(androidFilePath).existsSync(), false);
 
       androidStringResourceCreator.createStringResource(
           logger: MockLogger(),
-          fileSystem: fileSystem,
+          fileSystem: memoryFileSystem,
           stringNameToContentMap: sampleStringNameToContentMap);
 
-      expect(fileSystem.file(androidFilePath).existsSync(), true);
+      expect(memoryFileSystem.file(androidFilePath).existsSync(), true);
     });
 
     test('does not create a new file at $androidFilePath if it exists already',
@@ -44,18 +44,18 @@ void main() {
       final AndroidStringResourceCreator androidStringResourceCreator =
           AndroidStringResourceCreator();
 
-      final File file = fileSystem.file(androidFilePath)..createSync();
+      final File file = memoryFileSystem.file(androidFilePath)..createSync();
 
-      expect(fileSystem.file(androidFilePath).existsSync(), true);
+      expect(memoryFileSystem.file(androidFilePath).existsSync(), true);
 
       androidStringResourceCreator.createStringResource(
           logger: MockLogger(),
-          fileSystem: fileSystem,
+          fileSystem: memoryFileSystem,
           stringNameToContentMap: sampleStringNameToContentMap);
 
       expect(
-          (fileSystem.identicalSync(
-              fileSystem.file(androidFilePath).path, file.path)),
+          (memoryFileSystem.identicalSync(
+              memoryFileSystem.file(androidFilePath).path, file.path)),
           true);
     });
 
@@ -67,10 +67,10 @@ void main() {
 
         androidStringResourceCreator.createStringResource(
             logger: MockLogger(),
-            fileSystem: fileSystem,
+            fileSystem: memoryFileSystem,
             stringNameToContentMap: {'hello': 'Hello'});
 
-        final File fileWithGeneratedContent = fileSystem.file(androidFilePath);
+        final File fileWithGeneratedContent = memoryFileSystem.file(androidFilePath);
 
         final String generatedContentString =
             fileWithGeneratedContent.readAsStringSync();
@@ -93,10 +93,10 @@ void main() {
 
       androidStringResourceCreator.createStringResource(
           logger: MockLogger(),
-          fileSystem: fileSystem,
+          fileSystem: memoryFileSystem,
           stringNameToContentMap: {'hello': 'Hello', 'world': 'World'});
 
-      final File fileWithGeneratedContent = fileSystem.file(androidFilePath);
+      final File fileWithGeneratedContent = memoryFileSystem.file(androidFilePath);
 
       final String generatedContentString =
           fileWithGeneratedContent.readAsStringSync();
@@ -119,10 +119,10 @@ void main() {
 
       androidStringResourceCreator.createStringResource(
           logger: MockLogger(),
-          fileSystem: fileSystem,
+          fileSystem: memoryFileSystem,
           stringNameToContentMap: {});
 
-      final File fileWithGeneratedContent = fileSystem.file(androidFilePath);
+      final File fileWithGeneratedContent = memoryFileSystem.file(androidFilePath);
 
       final String generatedContentString =
           fileWithGeneratedContent.readAsStringSync();
