@@ -20,7 +20,7 @@ class AndroidStringResourceCreator implements StringResourceCreatorI {
           fileSystem.file(androidStringResourceDestinationPath);
 
       if (!destinationFile.existsSync()) {
-        destinationFile.createSync();
+        destinationFile.createSync(recursive: true);
       }
 
       final XmlBuilder xmlBuilder = XmlBuilder();

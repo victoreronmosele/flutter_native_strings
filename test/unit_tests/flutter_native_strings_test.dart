@@ -39,7 +39,7 @@ void main() {
           logger: MockLogger(),
           fileSystem: memoryFileSystem,
           arbFilePath: arbFilePath,
-          androidStringResourceCreator: mockStringResourceCreator);
+          stringResourceCreatorList: [mockStringResourceCreator]);
 
       verify(mockStringResourceCreator.createStringResource(
           fileSystem: anyNamed('fileSystem'),
@@ -63,7 +63,7 @@ void main() {
               logger: MockLogger(),
               fileSystem: MemoryFileSystem(),
               arbFilePath: arbFilePath,
-              androidStringResourceCreator: mockStringResourceCreator);
+              stringResourceCreatorList: [mockStringResourceCreator]);
 
       expect(generateNativeStringsFunction, returnsNormally);
     });

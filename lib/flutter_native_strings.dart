@@ -13,7 +13,7 @@ class FlutterNativeStrings {
       {@required LoggerI logger,
       @required FileSystem fileSystem,
       @required String arbFilePath,
-      @required StringResourceCreatorI androidStringResourceCreator}) {
+      @required List<StringResourceCreatorI> stringResourceCreatorList}) {
     try {
       logger.printMessage(
           message:
@@ -25,10 +25,13 @@ class FlutterNativeStrings {
           json.jsonDecode(arbFileContentAsString);
       final Map<String, dynamic> stringNameToContentMap = arbFileContentAsMap;
 
-      androidStringResourceCreator.createStringResource(
-          stringNameToContentMap: stringNameToContentMap,
-          fileSystem: fileSystem,
-          logger: logger);
+      for (StringResourceCreatorI stringResourceCreator
+          in stringResourceCreatorList) {
+        stringResourceCreator.createStringResource(
+            stringNameToContentMap: stringNameToContentMap,
+            fileSystem: fileSystem,
+            logger: logger);
+      }
     } catch (e) {
       logger.printMessage(message: 'Error occured: $e');
     }
