@@ -3,5 +3,8 @@
         "activityBar.background": "#0C3330",
         "titleBar.activeBackground": "#114843",
         "titleBar.activeForeground": "#F2FCFB"
+    },
+    "files.watcherExclude": {
+        "**/target": true
     }
 }
