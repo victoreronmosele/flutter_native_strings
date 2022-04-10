@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:file/file.dart';
 import 'package:file/memory.dart';
 import 'package:flutter_native_strings/src/util/logger/logger.dart';
@@ -17,7 +15,7 @@ void main() {
       'hello': 'Hello',
     };
 
-    FileSystem memoryFileSystem;
+    late FileSystem memoryFileSystem;
 
     setUp(() async {
       memoryFileSystem = MemoryFileSystem();

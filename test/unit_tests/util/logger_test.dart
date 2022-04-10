@@ -8,7 +8,7 @@ class MockIOSink extends Mock implements IOSink {}
 
 void main() {
   group(Logger, () {
-    MockIOSink mockIOSink;
+    late MockIOSink mockIOSink;
 
     setUp(() {
       mockIOSink = MockIOSink();
@@ -21,10 +21,6 @@ void main() {
       logger.printMessage(message: testMessage);
 
       verify(mockIOSink.writeln(testMessage));
-    });
-
-    tearDown(() {
-      mockIOSink.close();
     });
   });
 }

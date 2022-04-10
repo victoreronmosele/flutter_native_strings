@@ -1,15 +1,14 @@
 import 'package:file/file.dart';
 import 'package:flutter_native_strings/src/util/logger/logger.dart';
 import 'package:flutter_native_strings/src/util/string_resource_creator/string_resource_creator_i.dart';
-import 'package:meta/meta.dart';
 import 'package:xml/xml.dart';
 
 class AndroidStringResourceCreator implements StringResourceCreatorI {
   @override
   void createStringResource(
-      {@required Map<String, dynamic> stringNameToContentMap,
-      @required FileSystem fileSystem,
-      @required LoggerI logger}) {
+      {required Map<String, dynamic>? stringNameToContentMap,
+      required FileSystem fileSystem,
+      required LoggerI logger}) {
     try {
       logger.printMessage(message: 'Generating android string resource...\n');
 
@@ -26,7 +25,7 @@ class AndroidStringResourceCreator implements StringResourceCreatorI {
       final XmlBuilder xmlBuilder = XmlBuilder();
       xmlBuilder.processing('xml', 'version="1.0" encoding="utf-8"');
 
-      final int numberOfStringsToGenerate = stringNameToContentMap.length;
+      final int numberOfStringsToGenerate = stringNameToContentMap!.length;
 
       xmlBuilder.element('resources', nest: () {
         for (var i = 0; i < numberOfStringsToGenerate; i++) {
