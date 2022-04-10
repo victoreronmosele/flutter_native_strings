@@ -1,5 +1,4 @@
 import 'dart:convert' as json;
-import 'dart:io';
 
 import 'package:file/file.dart';
 import 'package:file/memory.dart';
@@ -18,14 +17,16 @@ void main() {
   group(FlutterNativeStrings, () {
     final String arbFilePath = 'assets/en.arb';
 
-    FlutterNativeStrings flutterNativeStrings;
-    StringResourceCreatorI mockStringResourceCreator;
-    FileSystem memoryFileSystem;
+    late FlutterNativeStrings flutterNativeStrings;
+    late StringResourceCreatorI mockStringResourceCreator;
+    late FileSystem memoryFileSystem;
+    late MockLogger mockLogger;
 
     setUp(() {
       flutterNativeStrings = FlutterNativeStrings();
       mockStringResourceCreator = MockStringResourceCreator();
       memoryFileSystem = MemoryFileSystem();
+      mockLogger = MockLogger();
 
       final File arbFile = memoryFileSystem.file(arbFilePath);
       arbFile.createSync(recursive: true);
@@ -36,14 +37,14 @@ void main() {
         'calls androidStringResourceCreator\'s createStringResource() method when run',
         () {
       flutterNativeStrings.generateNativeStrings(
-          logger: MockLogger(),
+          logger: mockLogger,
           fileSystem: memoryFileSystem,
           arbFilePath: arbFilePath,
           androidStringResourceCreator: mockStringResourceCreator);
 
       verify(mockStringResourceCreator.createStringResource(
-          fileSystem: anyNamed('fileSystem'),
-          logger: anyNamed('logger'),
+          fileSystem: memoryFileSystem,
+          logger: mockLogger,
           stringNameToContentMap: anyNamed('stringNameToContentMap')));
     });
 
@@ -53,8 +54,8 @@ void main() {
         () {
       /// To simulate any exception being thrown
       when(mockStringResourceCreator.createStringResource(
-              fileSystem: anyNamed('fileSystem'),
-              logger: anyNamed('logger'),
+              fileSystem: memoryFileSystem,
+              logger: mockLogger,
               stringNameToContentMap: anyNamed('stringNameToContentMap')))
           .thenThrow(Exception(''));
 
